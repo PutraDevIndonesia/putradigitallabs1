@@ -1,0 +1,63 @@
+/*
+  Token visual diturunkan dari logo: biru sebagai warna utama, ungu sebagai aksen.
+  Latar memakai putih hangat, bukan putih murni, supaya teks panjang tidak menyilaukan.
+*/
+:root {
+  color-scheme: light;
+
+  --ink-900: #10131a;
+  --ink-700: #383f4d;
+  --ink-500: #6a7382;
+  --ink-300: #9aa2af;
+
+  --paper-000: #ffffff;
+  --paper-050: #fbfaf8;
+  --paper-100: #f4f2ee;
+  --paper-200: #eae7e1;
+
+  --line-100: #e3dfd8;
+  --line-200: #cdc7bd;
+
+  --blue-700: #163fb0;
+  --blue-600: #1f5bff;
+  --blue-050: #edf2ff;
+  --violet-600: #7a3be8;
+  --violet-050: #f3edff;
+  --fold: #1b2e8c;
+
+  --ok-700: #0b5c3b;
+  --ok-600: #0f7b4f;
+  --ok-050: #e8f5ee;
+  --warn-700: #7a4a00;
+  --warn-600: #9a5b00;
+  --warn-050: #fdf3e3;
+  --danger-600: #b3261e;
+  --danger-050: #fdeceb;
+
+  --brand: linear-gradient(97deg, #1f5bff 0%, #4166f5 40%, #6c3ff0 70%, #7a3be8 100%);
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  --shadow-1: 0 1px 2px rgba(16, 19, 26, 0.06);
+  --shadow-2: 0 18px 40px -28px rgba(16, 19, 26, 0.35);
+
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Consolas', monospace;
+
+  --container: 1280px;
+  --gutter: 20px;
+  /* Jarak tepi untuk bilah selebar layar seperti header dan footer.
+     Dipisah dari --gutter karena bilah ini tidak dibatasi lebar konten. */
+  --page-pad: clamp(20px, 3.5vw, 72px);
+  --header-h: 66px;
+
+  --step-1: 0.8125rem;
+  --step-2: 0.9375rem;
+  --step-3: 1.0625rem;
+  --step-4: 1.375rem;
+  --step-5: clamp(1.75rem, 1.2rem + 2.2vw, 2.5rem);
+  --step-6: clamp(2.25rem, 1.4rem + 3.4vw, 3.5rem);
+}

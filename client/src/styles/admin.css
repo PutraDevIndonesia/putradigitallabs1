@@ -1,0 +1,389 @@
+.admin {
+  min-height: 100vh;
+  background: var(--paper-050);
+}
+
+.admin__bar {
+  border-bottom: 1px solid var(--line-100);
+  background: var(--paper-000);
+}
+
+.admin__bar-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: var(--header-h);
+}
+
+.admin__bar h1 {
+  font-size: var(--step-3);
+  font-weight: 700;
+}
+
+.admin__shell {
+  display: grid;
+  gap: 24px;
+  padding: 28px 0 64px;
+}
+
+.admin__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.admin__nav a {
+  padding: 9px 14px;
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-xs);
+  background: var(--paper-000);
+  color: var(--ink-700);
+  font-size: var(--step-2);
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.admin__nav a:hover {
+  border-color: var(--line-200);
+  color: var(--ink-900);
+}
+
+.admin__nav a[aria-current='page'] {
+  border-color: var(--blue-600);
+  background: var(--blue-050);
+  color: var(--blue-700);
+}
+
+.admin__main {
+  display: grid;
+  gap: 20px;
+  min-width: 0;
+}
+
+.admin-login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 20px;
+  background: var(--paper-050);
+}
+
+.admin-login__card {
+  width: min(420px, 100%);
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-md);
+  background: var(--paper-000);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+}
+
+.admin-login__body {
+  padding: 28px;
+  display: grid;
+  gap: 20px;
+}
+
+.metrics {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.metric {
+  padding: 18px 20px;
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-md);
+  background: var(--paper-000);
+  display: grid;
+  gap: 6px;
+}
+
+.metric__value {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.metric__label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-md);
+  background: var(--paper-000);
+}
+
+.toolbar__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.toolbar .field {
+  min-width: 180px;
+}
+
+/* Kolom bahasa kedua dibungkus <details> supaya tertutup secara bawaan: yang
+   wajib diisi hanya bahasa utama, sisanya dibuka kalau mau diperiksa. */
+.editor__translation {
+  padding: 14px 16px;
+  border: 1px dashed var(--line-200);
+  border-radius: var(--radius-sm);
+  background: var(--paper-050);
+}
+
+.editor__translation > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-700);
+}
+
+.editor__translation > summary::-webkit-details-marker {
+  display: none;
+}
+
+.editor__translation > summary svg {
+  flex: none;
+  transition: transform 160ms ease;
+}
+
+.editor__translation[open] > summary svg {
+  transform: rotate(180deg);
+}
+
+.detail-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.detail-row {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-100);
+}
+
+.detail-row__label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.detail-row__value {
+  font-size: var(--step-2);
+  color: var(--ink-900);
+  overflow-wrap: anywhere;
+}
+
+.brief-text {
+  white-space: pre-wrap;
+  font-size: var(--step-2);
+  color: var(--ink-700);
+  line-height: 1.6;
+}
+
+/* Komponen pengunggah gambar rasio 16:9 untuk portofolio & artikel */
+.image-uploader {
+  display: grid;
+  gap: 10px;
+}
+
+.image-preview-card {
+  display: grid;
+  gap: 10px;
+}
+
+.image-preview-16-9 {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--line-200);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--paper-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-preview-16-9 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.image-preview-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.image-dropzone {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 220px;
+  border: 2px dashed var(--line-200);
+  border-radius: var(--radius-sm);
+  background: var(--paper-050);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 18px;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.image-dropzone:hover,
+.image-dropzone:focus-visible {
+  border-color: var(--blue-600);
+  background: var(--blue-050);
+  outline: none;
+}
+
+.image-dropzone-inner {
+  display: grid;
+  gap: 6px;
+  justify-items: center;
+}
+
+.image-dropzone-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--paper-000);
+  border: 1px solid var(--line-200);
+  display: grid;
+  place-items: center;
+  color: var(--blue-600);
+}
+
+@media (min-width: 960px) {
+  .admin__shell {
+    grid-template-columns: 210px minmax(0, 1fr);
+    align-items: start;
+    gap: 32px;
+  }
+
+  .admin__nav {
+    display: grid;
+    position: sticky;
+    top: calc(var(--header-h) + 20px);
+  }
+
+  .detail-grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 28px;
+  }
+}
+
+.modal {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  width: min(760px, calc(100vw - 32px));
+  max-height: calc(100vh - 48px);
+  color: var(--ink-900);
+}
+
+.modal--sm {
+  width: min(440px, calc(100vw - 32px));
+}
+
+.modal::backdrop {
+  background: rgba(16, 19, 26, 0.52);
+}
+
+.modal__panel {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 48px);
+  border: 1px solid var(--line-200);
+  border-radius: var(--radius-md);
+  background: var(--paper-000);
+  box-shadow: var(--shadow-2);
+  overflow: hidden;
+}
+
+.modal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--line-100);
+  background: var(--paper-000);
+}
+
+.modal__head h2 {
+  font-size: var(--step-4);
+}
+
+.modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-xs);
+  background: var(--paper-000);
+  color: var(--ink-700);
+  cursor: pointer;
+}
+
+.modal__close:hover {
+  border-color: var(--line-200);
+  background: var(--paper-100);
+  color: var(--ink-900);
+}
+
+.modal__body {
+  overflow: auto;
+  padding: 22px;
+}
+
+/* Di layar ponsel pop-up menjadi lembar penuh: form panjang seperti portofolio
+   dan artikel tidak nyaman diisi di dalam kotak kecil. */
+@media (max-width: 640px) {
+  .modal,
+  .modal--sm {
+    width: 100vw;
+    max-width: none;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+  }
+
+  .modal__panel {
+    height: 100vh;
+    max-height: 100vh;
+    border: 0;
+    border-radius: 0;
+  }
+}

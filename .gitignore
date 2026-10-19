@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env*
+!.env.example
+*.log
+serviceAccountKey*.json
+*.serviceAccount.json
+*firebase-adminsdk*.json
+*.zip
+chat wa bisnis/
+session_backup/

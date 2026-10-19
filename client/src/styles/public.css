@@ -1,0 +1,756 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--paper-000);
+  border-bottom: 1px solid var(--line-100);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: var(--header-h);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink-900);
+  flex: none;
+}
+
+.brand__mark {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  flex: none;
+}
+
+.brand__fallback {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-xs);
+  background: var(--brand);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.9rem;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.brand__name {
+  display: grid;
+  line-height: 1.15;
+}
+
+.brand__name strong {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 700;
+}
+
+.brand__name span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.site-nav {
+  display: none;
+  margin-left: auto;
+  align-items: center;
+  gap: 4px;
+}
+
+.site-nav a {
+  padding: 8px 12px;
+  border-radius: var(--radius-xs);
+  color: var(--ink-700);
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-nav a:hover {
+  background: var(--paper-100);
+  color: var(--ink-900);
+}
+
+.site-nav a[aria-current='page'] {
+  color: var(--blue-700);
+  background: var(--blue-050);
+}
+
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+/* Tombol ajakan disembunyikan di layar sempit karena ruang header dipakai
+   pengalih bahasa dan tombol menu, lalu muncul saat navigasi desktop aktif. */
+.header-cta {
+  display: none;
+}
+
+.lang {
+  display: flex;
+  border: 1px solid var(--line-200);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+}
+
+.lang button {
+  min-width: 40px;
+  min-height: 36px;
+  border: 0;
+  background: var(--paper-000);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-500);
+  cursor: pointer;
+}
+
+.lang button[aria-pressed='true'] {
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-200);
+  border-radius: var(--radius-xs);
+  background: var(--paper-000);
+  cursor: pointer;
+}
+
+.mobile-nav {
+  border-top: 1px solid var(--line-100);
+  background: var(--paper-000);
+  padding: 12px 0 20px;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.mobile-nav a,
+.mobile-nav button.link {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-100);
+  color: var(--ink-900);
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-decoration: none;
+  text-align: left;
+  background: none;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  cursor: pointer;
+}
+
+.hero {
+  padding: 56px 0 64px;
+  background: var(--paper-000);
+  border-bottom: 1px solid var(--line-100);
+}
+
+.hero h1 {
+  margin-bottom: 18px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.hero__panel {
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-md);
+  background: var(--paper-050);
+  overflow: hidden;
+}
+
+.hero__panel-head {
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line-100);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.deliverables {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  counter-reset: deliverable;
+}
+
+.deliverables li {
+  display: flex;
+  gap: 14px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--line-100);
+  font-size: var(--step-2);
+  color: var(--ink-700);
+}
+
+.deliverables li:last-child {
+  border-bottom: 0;
+}
+
+.deliverables li::before {
+  counter-increment: deliverable;
+  content: counter(deliverable, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--blue-600);
+  padding-top: 3px;
+}
+
+.process {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  counter-reset: process;
+}
+
+.process__item {
+  display: grid;
+  gap: 8px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line-100);
+}
+
+.process__index {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--blue-600);
+}
+
+.process__item h3 {
+  font-size: var(--step-3);
+  font-weight: 700;
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 18px;
+  padding: 24px 0;
+  border-top: 1px solid var(--line-100);
+}
+
+.service-row__icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line-200);
+  border-radius: var(--radius-sm);
+  color: var(--blue-600);
+  background: var(--paper-000);
+}
+
+.service-row h3 {
+  font-size: var(--step-3);
+  margin-bottom: 6px;
+}
+
+.service-row p {
+  color: var(--ink-700);
+  font-size: var(--step-2);
+  max-width: 68ch;
+}
+
+.plan {
+  display: grid;
+  gap: 18px;
+  padding: 26px;
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-md);
+  background: var(--paper-000);
+  align-content: start;
+}
+
+.plan--recommended {
+  border-color: var(--blue-600);
+  box-shadow: var(--shadow-2);
+}
+
+.plan__price {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  color: var(--ink-900);
+}
+
+.plan__features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  font-size: var(--step-2);
+  color: var(--ink-700);
+}
+
+.plan__features li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.plan__features svg {
+  margin-top: 4px;
+  color: var(--blue-600);
+}
+
+.plan__foot {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--line-100);
+  display: grid;
+  gap: 12px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.filters button {
+  padding: 8px 14px;
+  border: 1px solid var(--line-200);
+  border-radius: var(--radius-xs);
+  background: var(--paper-000);
+  font-size: var(--step-1);
+  font-family: var(--font-mono);
+  color: var(--ink-700);
+  cursor: pointer;
+}
+
+.filters button[aria-pressed='true'] {
+  border-color: var(--ink-900);
+  background: var(--ink-900);
+  color: #fff;
+}
+
+.work-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.work {
+  display: grid;
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-md);
+  background: var(--paper-000);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+}
+
+.work:hover {
+  border-color: var(--line-200);
+  box-shadow: var(--shadow-2);
+}
+
+.work__cover {
+  aspect-ratio: 16 / 9;
+  background: var(--paper-100);
+  object-fit: cover;
+  width: 100%;
+  display: block;
+}
+
+.work__cover--empty {
+  display: grid;
+  place-items: center;
+  color: var(--ink-300);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.work-detail__cover-16-9 {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 520px;
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--paper-100);
+  box-shadow: var(--shadow-2);
+}
+
+.work-detail__cover-16-9 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.work__body {
+  padding: 18px 20px 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.work__meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.work__body h3 {
+  font-size: var(--step-3);
+}
+
+.work__body p {
+  font-size: var(--step-2);
+  color: var(--ink-700);
+}
+
+.post-list {
+  display: grid;
+  border-top: 1px solid var(--line-100);
+}
+
+.post {
+  display: grid;
+  gap: 8px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line-100);
+  text-decoration: none;
+  color: inherit;
+}
+
+.post:hover h3 {
+  color: var(--blue-700);
+}
+
+.post time {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.post p {
+  color: var(--ink-700);
+  font-size: var(--step-2);
+  max-width: 72ch;
+}
+
+.track-result {
+  display: grid;
+  gap: 24px;
+}
+
+/* Kartu hasil pengiriman brief. Dibatasi 720px karena isinya pendek: kalau
+   dibiarkan selebar konten, baris teksnya jadi terlalu panjang untuk dibaca. */
+.receipt {
+  display: grid;
+  gap: 20px;
+  max-width: 720px;
+  padding: 28px;
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-md);
+  background: var(--paper-000);
+}
+
+.receipt__next {
+  display: grid;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.receipt__next h2 {
+  font-size: var(--step-3);
+}
+
+.action-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: langkah;
+  display: grid;
+  gap: 10px;
+  font-size: var(--step-2);
+  color: var(--ink-700);
+}
+
+.action-list li {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 10px;
+}
+
+.action-list li::before {
+  counter-increment: langkah;
+  content: counter(langkah, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--blue-600);
+  padding-top: 3px;
+}
+
+.status-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line-100);
+}
+
+.site-footer {
+  margin-top: 64px;
+  border-top: 1px solid var(--line-100);
+  background: var(--paper-000);
+}
+
+.footer-grid {
+  display: grid;
+  gap: 28px;
+  padding: 48px 0 32px;
+}
+
+.footer-grid h3 {
+  font-size: var(--step-2);
+  margin-bottom: 12px;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  font-size: var(--step-2);
+}
+
+.footer-links a {
+  color: var(--ink-700);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--blue-700);
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 18px 0;
+  border-top: 1px solid var(--line-100);
+  font-size: var(--step-1);
+  color: var(--ink-500);
+}
+
+/* Tombol WhatsApp mengambang. Warna memakai teal resmi WhatsApp (#128c7e),
+   bukan hijau terang #25d366, karena teks putih di atas hijau terang hanya
+   berkontras sekitar 1,9:1 dan sulit dibaca. Teal ini memberi sekitar 4:1. */
+.wa {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 45;
+  display: grid;
+  justify-items: end;
+  gap: 10px;
+}
+
+.wa__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: #128c7e;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-2);
+  transition: background-color 160ms ease;
+}
+
+.wa__button:hover {
+  background: #0f7869;
+}
+
+.wa__button svg {
+  flex: none;
+}
+
+/* Label hanya muncul saat layar cukup lebar; di ponsel tombolnya cukup ikon. */
+.wa__label {
+  display: none;
+}
+
+.wa__panel {
+  width: min(340px, calc(100vw - 32px));
+  padding: 18px;
+  border: 1px solid var(--line-200);
+  border-radius: var(--radius-md);
+  background: var(--paper-000);
+  box-shadow: var(--shadow-2);
+  display: grid;
+  gap: 12px;
+}
+
+.wa__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.wa__head h2 {
+  font-size: var(--step-3);
+}
+
+.wa__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  flex: none;
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-xs);
+  background: var(--paper-000);
+  color: var(--ink-700);
+  cursor: pointer;
+}
+
+.wa__close:hover {
+  border-color: var(--line-200);
+  background: var(--paper-100);
+  color: var(--ink-900);
+}
+
+.wa__intro {
+  font-size: var(--step-2);
+  color: var(--ink-700);
+}
+
+.wa__preview {
+  margin: 0;
+  max-height: 210px;
+  overflow: auto;
+  padding: 12px 14px;
+  border: 1px solid var(--line-100);
+  border-radius: var(--radius-sm);
+  background: var(--paper-050);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: var(--ink-700);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.wa__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .wa__label {
+    display: inline;
+  }
+}
+
+@media (min-width: 900px) {
+  /* margin-left: auto di sini sengaja dibiarkan dari aturan dasar: itulah yang
+     mendorong seluruh kelompok navigasi ke tepi kanan, sehingga logo berdiri
+     sendiri di kiri dan menunya rapat ke kanan. */
+  .site-nav {
+    display: flex;
+  }
+
+  .header-cta {
+    display: inline-flex;
+  }
+
+  .header-tools {
+    margin-left: 0;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+
+  .hero {
+    padding: 76px 0 88px;
+  }
+
+  .service-row {
+    grid-template-columns: 48px minmax(0, 1fr) 40ch;
+    align-items: start;
+  }
+
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1.4fr 1fr 1fr;
+  }
+
+  .process {
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+
+  .process__item {
+    border-top: 2px solid var(--line-200);
+    padding: 22px 24px 22px 0;
+  }
+}
