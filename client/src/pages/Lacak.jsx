@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Download, FileText, FolderArchive, Search } from 'lucide-react'
 import { Field, InlineAlert, PageHeader } from '../components/ui.jsx'
 import { StatusBadge } from '../components/StatusBadge.jsx'
@@ -10,6 +10,33 @@ import { readLastTicket } from '../lib/lastTicket.js'
 import { useDocumentTitle } from '../lib/useDocumentTitle.js'
 
 const CODE_PATTERN = /^PDL-[A-Z0-9]{4,8}$/
+
+// Kode bisa datang dari tautan seperti /lacak?code=PDL-ABC123 atau ?PDL-ABC123.
+// Format lama "?=PDL-ABC123" juga diterima supaya tautan yang sudah terlanjur
+// dibagikan tetap berfungsi.
+function readCodeFromSearch(searchParams) {
+  let raw = searchParams.get('code') || searchParams.get('ticket') || searchParams.get('kode')
+
+  if (!raw) {
+    for (const [key, value] of searchParams.entries()) {
+      if (key.trim() === '' && value) {
+        raw = value
+        break
+      }
+    }
+  }
+
+  // Tautan bisa datang tanpa query string sama sekali (?PDL-ABC123) atau
+  // dengan tanda "=" yang tidak lengkap (?=PDL-ABC123).
+  if (!raw) {
+    const bare = window.location.search.replace(/^\?/, '').replace(/^=/, '')
+    if (bare) raw = decodeURIComponent(bare.split('&')[0].split('=').pop() || '')
+  }
+
+  return String(raw || '')
+    .trim()
+    .toUpperCase()
+}
 
 const DELIVERABLES = [
   {
@@ -30,15 +57,23 @@ export default function Lacak() {
   const { t, locale } = useI18n()
   useDocumentTitle(t('track.title'))
 
-  // Kode tiket terakhir dari perangkat ini diisi lebih dulu supaya pengunjung
-  // tidak perlu mencari kodenya lagi saat mau memeriksa status.
-  const [code, setCode] = useState(() => readLastTicket())
+  const [searchParams] = useSearchParams()
+  const urlCode = readCodeFromSearch(searchParams)
+
+  // Kode tiket dari tautan (?code=PDL-XXXX) diisi lebih dulu, lalu kode
+  // terakhir dari perangkat ini sebagai cadangan supaya pengunjung tidak perlu
+  // mencari kodenya lagi saat mau memeriksa status.
+  const [code, setCode] = useState(() => urlCode || readLastTicket())
   const [status, setStatus] = useState('idle')
   const [result, setResult] = useState(null)
   const [message, setMessage] = useState(null)
 
+  // Menandai permintaan pertama dari tautan agar tidak diulang saat render
+  // ulang, sementara penekanan tombol Track tetap bisa mencari kode yang sama.
+  const autoTrackedRef = useRef('')
+
   async function handleSubmit(event) {
-    event.preventDefault()
+    event?.preventDefault()
     const normalized = code.trim().toUpperCase()
 
     // Format diperiksa di klien lebih dulu supaya salah ketik tidak perlu satu perjalanan ke server.
@@ -62,6 +97,18 @@ export default function Lacak() {
       setMessage(error?.message || 'internal_error')
     }
   }
+
+  // Tautan lacak (?code=PDL-XXXX) langsung dicari saat halaman dibuka, jadi
+  // pengunjung tidak perlu menekan tombol Track lagi. Kode yang tidak cocok
+  // format tetap dibiarkan di kolom agar bisa diperbaiki sendiri.
+  useEffect(() => {
+    if (!urlCode || autoTrackedRef.current === urlCode) return
+    autoTrackedRef.current = urlCode
+    setCode(urlCode)
+    if (CODE_PATTERN.test(urlCode)) handleSubmit()
+    // handleSubmit hanya memakai code yang baru diset di atas.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlCode])
 
   // Riwayat status dibaca dari kunci statusHistory. Sebelumnya kunci ini bernama
   // "timeline" dan bertabrakan dengan target waktu pengunjung.

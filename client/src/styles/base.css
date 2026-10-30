@@ -257,11 +257,6 @@ textarea {
     gap: 32px;
   }
 
-  .split--hero {
-    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-    gap: 48px;
-    align-items: start;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

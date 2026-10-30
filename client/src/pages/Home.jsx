@@ -25,13 +25,38 @@ export default function Home() {
 
   const [services, packages, portfolio, articles] = data || [[], [], [], []]
   const process = t('home.process')
-  const deliverables = t('home.deliverables')
+
+  const metrics = [
+    { key: 'services', label: t('nav.services'), value: services.length, to: '/layanan' },
+    { key: 'plans', label: t('nav.plans'), value: packages.length, to: '/paket' },
+    { key: 'work', label: t('nav.work'), value: portfolio.length, to: '/portofolio' },
+    { key: 'blog', label: t('nav.blog'), value: articles.length, to: '/artikel' },
+  ]
+
+  const latest = [
+    portfolio[0]
+      ? {
+          key: `work-${portfolio[0].id}`,
+          tag: t('nav.work'),
+          title: pick(portfolio[0], 'title', locale),
+          to: `/portofolio/${portfolio[0].slug}`,
+        }
+      : null,
+    ...articles.slice(0, 2).map((article) => ({
+      key: `post-${article.id}`,
+      tag: t('nav.blog'),
+      title: pick(article, 'title', locale),
+      to: `/artikel/${article.slug}`,
+    })),
+  ].filter(Boolean)
+
+  const latestNote = loading ? t('home.dashLoading') : t('home.dashEmpty')
 
   return (
     <>
-      <section className="hero">
-        <div className="container split split--hero">
-          <div className="reveal">
+      <section className="hero hero--dash">
+        <div className="container dash">
+          <div className="dash__head">
             <p className="eyebrow">{t('home.eyebrow')}</p>
             <h1>{t('home.title')}</h1>
             <p className="lede">{t('home.lede')}</p>
@@ -46,14 +71,48 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className="hero__panel">
-            <p className="hero__panel-head">{t('home.deliverablesTitle')}</p>
-            <ol className="deliverables">
-              {(Array.isArray(deliverables) ? deliverables : []).map((item) => (
-                <li key={item}>{item}</li>
+          <div className="dash__grid">
+            <div className="dash__metrics">
+              {metrics.map((metric) => (
+                <Link className="metric" to={metric.to} key={metric.key}>
+                  <span className="metric__label">{metric.label}</span>
+                  <span className="metric__value">{loading ? '...' : metric.value}</span>
+                  <span className="metric__open">
+                    {t('home.dashOpen')}
+                    <ArrowRight size={14} aria-hidden="true" />
+                  </span>
+                </Link>
               ))}
-            </ol>
-          </aside>
+            </div>
+
+            <aside className="dash__panel" aria-labelledby="dash-panel-title">
+              <h2 id="dash-panel-title" className="dash__panel-title">
+                {t('home.dashRecent')}
+              </h2>
+
+              {error ? (
+                <div className="dash__notice">
+                  <p>{t('home.dashError')}</p>
+                  <button type="button" className="btn btn--outline btn--sm" onClick={reload}>
+                    {t('home.dashRetry')}
+                  </button>
+                </div>
+              ) : latest.length > 0 ? (
+                <ul className="dash__list">
+                  {latest.map((item) => (
+                    <li key={item.key}>
+                      <Link to={item.to}>
+                        <span className="dash__tag">{item.tag}</span>
+                        <span className="dash__title">{item.title}</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="dash__notice">{latestNote}</p>
+              )}
+            </aside>
+          </div>
         </div>
       </section>
 
